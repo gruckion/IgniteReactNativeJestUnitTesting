@@ -16,5 +16,5 @@
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "include": ["App.js", "app", "test", "storybook"]
+  "include": ["App.js", "app", "test", "storybook", "jest.setup.js"]
 }

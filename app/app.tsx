@@ -9,6 +9,8 @@
  * The app navigation resides in ./app/navigation, so head over there
  * if you're interested in adding screens and navigators.
  */
+import { withAuthenticator } from "aws-amplify-react-native"
+import Amplify from "aws-amplify"
 import "./i18n"
 import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef } from "react"
@@ -24,12 +26,16 @@ import {
   useNavigationPersistence,
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import config from "../aws-exports"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
+import { YellowBox } from "react-native"
 enableScreens()
+
+Amplify.configure(config)
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -75,4 +81,4 @@ function App() {
   )
 }
 
-export default App
+export default withAuthenticator(App)
